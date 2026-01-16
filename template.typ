@@ -14,12 +14,25 @@
   appendix: none, //不需要则传none
   doc,
 ) = {
+  let is-appendix = state("is-appendix", false)
+  //字体全局设置
   set text(
     font: ("Times New Roman", "SimSun"),
     size: 12pt,
     lang: "zh",
   )
-  let is-appendix = state("is-appendix", false)
+  
+  //实现中文 fake-bold
+  show strong: it => {
+    set text(weight: "bold")
+    show regex("\p{sc=Han}"): set text(stroke: 0.0285em)
+    it.body
+  }
+  //中文斜体用楷体替代
+  show emph: it => {
+    show regex("\p{sc=Han}"): set text(font: "KaiTi")
+    it.body
+  }
 
   //列表缩进
   set list(indent: 2em)

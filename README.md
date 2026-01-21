@@ -1,4 +1,4 @@
-*A flexible experiment report template , allowing you to focus on the content*
+*A flexible experiment report template ，allowing you to focus on the content*
 
 *这是一份用于实验报告的Typst模板*
 
@@ -6,7 +6,7 @@
 
 该模板集成了封面生成、自动排版、代码块高亮、智能图表编号以及参考文献管理等功能，旨在让你专注于实验内容的撰写，而无需操心排版问题。
 
-该模板默认样式为华中科技大学，其他学校的学生如果想要使用，可以自行在main.typ中传入自己学校的logo，同步修改页眉等相关信息即可。
+该模板默认样式为华中科技大学，其他学校的学生如果想要使用，可以自行在main.typ中调用report时传入自己学校的logo(具体见下方示例)，同步修改页眉等相关信息即可。
 
 ---
 
@@ -42,13 +42,7 @@ typst init @preview/simple-hust-report:0.1.0 my-report
 
 这会自动在当前目录下创建一个名为 `my-report` 的文件夹，其中包含所有必要的文件。
 
-##### 方式二:在Typst Web App中使用
-
-1. 前往[Typst Web App](https://typst.app/)
-2. 点击 "start from template"
-3. 搜索simple-hust-report并导入
-
-**方式三:手动引入(已有项目)**
+##### 方式二:手动引入(已有项目)
 
 如果你想在现有的文档中使用此模板，请在文件开头添加：
 
@@ -170,6 +164,12 @@ helloWolrd()
 = 第二章
 更多使用方法请查询#link("https://typst.app/docs/")[官方文档]。
 ````
+
+##### 方式三:在Typst Web App中使用(不推荐)
+
+1. 前往[Typst Web App](https://typst.app/)
+2. 点击 "start from template"
+3. 搜索simple-hust-report并导入
 
 接下来就可以开始修改模板，编写你的代码。
 

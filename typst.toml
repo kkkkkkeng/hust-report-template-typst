@@ -1,6 +1,6 @@
 [package]
 name = "simple-hust-report"    
-version = "0.1.0"        
+version = "0.1.1"        
 entrypoint = "lib.typ"
 authors = ["mitsuhaaa <mitsuhaaa8@outlook.com>"]
 license = "MIT"

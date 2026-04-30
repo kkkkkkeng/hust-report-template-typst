@@ -16,25 +16,15 @@
 
 2. **定制封面**：封面logo,标题，课程，实验名称等标签与内容均支持自定义。
 
-3. **代码块排版优化**：预设代码块圆角背景，选用JetBrains Mono/Consolas等宽字体提高阅读体验。
+3. **代码块排版优化**：预设代码块圆角背景，优先使用JetBrains Mono等开源等宽字体提高阅读体验。
 
 4. **中文排版增强**：支持中文**伪粗体**与*伪斜体*（映射为楷体）,兼容Markdown强调语法。
 
 #### 使用方法
 
-使用前确保系统安装了以下字体
-
-- 中文字体：宋体 (SimSun), 黑体 (SimHei), 楷体 (KaiTi)
-
-- 英文字体：Times New Roman
-
-- 代码字体： Consolas或JetBrains Mono
-
-如果你是windows系统，则系统已自带这些字体，无需额外安装
-
 ##### 方式一：使用命令行工具(推荐)
 
-如果你已经在本地安装了 Typst CLI (0.12.0+),可[点击这里](https://github.com/typst/typst)前往安装，只需运行以下命令即可初始化一个新项目：
+如果你已经在本地安装了 [Typst CLI (0.12.0+)](https://github.com/typst/typst)前往安装，只需运行以下命令即可初始化一个新项目：
 
 ```bash
 typst init @preview/simple-hust-report:0.1.0 my-report
@@ -177,6 +167,24 @@ helloWolrd()
 
 ---
 
+#### 关于字体
+
+- 正文/标题中文：Noto Serif CJK SC、Noto Sans CJK SC，或 Source Han Serif SC、Source Han Sans SC
+
+- 楷体风格：LXGW WenKai 或 FandolKai
+
+- 仿宋风格：FandolFang
+
+- 英文字体：TeX Gyre Termes、TeX Gyre Heros
+
+- 代码字体：JetBrains Mono、Cascadia Code 或 DejaVu Sans Mono
+
+没有安装上述字体时，模板会自动回退到系统常见字体，例如 macOS 的 Songti SC / PingFang SC、Windows 的 Times New Roman / SimSun / SimHei / KaiTi / FangSong / Consolas。Typst Web App 或 Linux 环境推荐安装 Noto CJK、Fandol 和 JetBrains Mono，以减少缺字或字体风格变化。
+
+如果编译时看到 `unknown font family` 警告，通常只是当前系统没有安装字体栈中的某些候选字体；只要 PDF 正常生成且文字显示完整，就不影响使用。安装上面推荐的字体可以减少这类警告并让不同平台的输出更一致。
+
+---
+
 #### 目录结构说明
 
 使用模板初始化后的推荐目录结构如下：
@@ -224,8 +232,6 @@ my-report/
 | `header_text`       | string   | `"华中科技..."`  | 页眉中间的红字文本                                   |
 | `bibliography-file` | content  | `none`           | 传入参考文献，调用`bibliography("文献路径")`传入     |
 | `appendix`          | content  | `none`           | 附录内容块，传入即开启附录模式                       |
-
-
 
 
 

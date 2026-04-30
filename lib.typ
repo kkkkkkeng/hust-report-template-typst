@@ -1,6 +1,15 @@
 #import "@preview/lovelace:0.3.0"
 #let pseudocode = lovelace.pseudocode
 #let pseudocode-list = lovelace.pseudocode-list
+
+// Cross-platform font stacks. Prefer open-source fonts, then common
+// platform fonts, while preserving the original serif/sans/kai/fangsong styles.
+#let serif-font = ("TeX Gyre Termes", "Times New Roman", "Noto Serif CJK SC", "Source Han Serif SC", "FandolSong", "Songti SC", "STSong", "SimSun")
+#let sans-font = ("TeX Gyre Heros", "Arial", "Noto Sans CJK SC", "Source Han Sans SC", "FandolHei", "PingFang SC", "Heiti SC", "STHeiti", "Microsoft YaHei", "SimHei")
+#let kai-font = ("TeX Gyre Termes", "Times New Roman", "LXGW WenKai", "Kaiti SC", "STKaiti", "FandolKai", "KaiTi")
+#let fangsong-font = ("TeX Gyre Termes", "Times New Roman", "FandolFang", "STFangsong", "FangSong")
+#let mono-font = ("JetBrains Mono", "Cascadia Code", "DejaVu Sans Mono", "Noto Sans Mono CJK SC", "Source Han Mono SC", "Menlo", "Monaco", "Consolas", "FandolHei", "PingFang SC", "SimHei")
+
 #let report(
   logo: image("assets/HUSTGreen.svg", width: 55%),
   type: "课程实验报告",
@@ -20,7 +29,7 @@
   let is-appendix = state("is-appendix", false)
   //字体全局设置
   set text(
-    font: ("Times New Roman", "SimSun"),
+    font: serif-font,
     size: 12pt,
     lang: "zh",
   )
@@ -33,7 +42,7 @@
   }
   //中文斜体用楷体替代
   show emph: it => {
-    show regex("\p{sc=Han}"): set text(font: "KaiTi")
+    show regex("\p{sc=Han}"): set text(font: kai-font)
     it.body
   }
 
@@ -46,7 +55,7 @@
 
   show heading: it => {
     set text(
-      font: ("Times New Roman", "SimHei"),
+      font: sans-font,
       weight: "regular",
     )
     if it.level == 1 {
@@ -70,7 +79,7 @@
 
   //代码块/行内代码设置
   show raw: set text(
-    font: ("JetBrains Mono", "Consolas", "SimHei"),
+    font: mono-font,
     size: 10.5pt,
   )
   show raw.where(block: true): it => {
@@ -104,9 +113,9 @@
 
   show figure.caption: it => {
     set text(size: 10.5pt)
-    text(font: "SimHei", stroke: 0.01em)[#it.supplement #context it.counter.display()]
+    text(font: sans-font, stroke: 0.01em)[#it.supplement #context it.counter.display()]
     "  "
-    text(font: ("Times New Roman", "KaiTi"))[#it.body]
+    text(font: kai-font)[#it.body]
   }
 
   //公式自动编号
@@ -132,7 +141,7 @@
   //页眉页脚定义
   let my-header = context {
     set align(center)
-    text(size: 16pt, font: "KaiTi", fill: rgb(180, 0, 0), tracking: 0.5em)[#header-text]
+    text(size: 16pt, font: kai-font, fill: rgb(180, 0, 0), tracking: 0.5em)[#header-text]
     v(-0.65em)
     stack(
       spacing: 0.13em,
@@ -171,11 +180,11 @@
         columns: (3fr, 7fr),
         gutter: 0.5em,
         align(right + horizon)[
-          #text(font: "Fangsong", stroke: black + 0.05em)[#key]
+          #text(font: fangsong-font, stroke: black + 0.05em)[#key]
         ],
         align(horizon + center)[
           #box(width: 100%, stroke: (bottom: 0.05em), inset: 4pt)[
-            #text(font: ("Times New Roman", "SimSun"))[#value]
+            #text(font: serif-font)[#value]
           ]
         ],
       )
@@ -190,11 +199,11 @@
         columns: (3fr, 7fr),
         gutter: 1em,
         align(right + horizon)[
-          #text(font: ("Times New Roman", "SimHei"), stroke: black + 0.05em)[#key:]
+          #text(font: sans-font, stroke: black + 0.05em)[#key:]
         ],
         align(horizon + center)[
           #box(width: 100%, stroke: (bottom: 0.05em), inset: 4pt)[
-            #text(font: ("Times New Roman", "SimSun"), stroke: black + 0.03em)[#value]
+            #text(font: serif-font, stroke: black + 0.03em)[#value]
           ]
         ],
       )
@@ -211,7 +220,7 @@
     }
 
     #v(1.8em, weak: true)
-    #text(size: 38pt, font: "Fangsong", weight: "bold", tracking: 0.2em, stroke: black + 0.04em)[#type]
+    #text(size: 38pt, font: fangsong-font, weight: "bold", tracking: 0.2em, stroke: black + 0.04em)[#type]
   ]
 
   v(3fr)
@@ -233,7 +242,7 @@
     #info-line([日#h(2em)期], date, 17pt)
   ]
   v(2fr)
-  align(center)[#text(size: 17pt, font: "Fangsong", stroke: black + 0.05em)[#school]]
+  align(center)[#text(size: 17pt, font: fangsong-font, stroke: black + 0.05em)[#school]]
   v(2fr)
 
   pagebreak()
@@ -244,16 +253,16 @@
 
   show outline.entry: it => {
     if it.level == 1 {
-      set text(size: 14pt, font: ("Times New Roman", "SimHei"), weight: "bold")
+      set text(size: 14pt, font: sans-font, weight: "bold")
       it
     } else {
-      set text(font: ("Times New Roman", "SimSun"))
+      set text(font: serif-font)
       it
     }
   }
 
   show outline: set align(center)
-  outline(title: [#text(size: 18pt, font: "SimHei", weight: "bold")[目#h(2em)录]], indent: 2em, depth: 2)
+  outline(title: [#text(size: 18pt, font: sans-font, weight: "bold")[目#h(2em)录]], indent: 2em, depth: 2)
 
 
   pagebreak()
@@ -286,4 +295,3 @@
     appendix
   }
 }
-
